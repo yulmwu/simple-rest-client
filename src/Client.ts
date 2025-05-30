@@ -4,14 +4,14 @@ import { ClientOutput, ParsedRequest } from './types'
 import UrlResolver from './UrlResolver'
 import headersFormatter from './utils/HeadersFormatter'
 
-class HttpRequestClient<T> {
+class HttpRequestClient {
     private parsed: ParsedRequest
 
     constructor(parsed: ParsedRequest) {
         this.parsed = parsed
     }
 
-    public async send(): Promise<ClientOutput<T>> {
+    public async send(): Promise<ClientOutput> {
         const urlResolver = new UrlResolver(this.parsed.headers)
         const url = urlResolver.buildFullUrl(this.parsed.path)
 
@@ -27,7 +27,9 @@ class HttpRequestClient<T> {
         try {
             const res = await axios.request(config)
 
-            const output: ClientOutput<T> = {
+            if (typeof res.data === 'object' && res.data !== null) res.data = JSON.stringify(res.data, null, 4)
+
+            const output: ClientOutput = {
                 status: res.status,
                 statusText: res.statusText,
                 headers: headersFormatter(res),
