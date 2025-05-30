@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "esModuleInterop": false,
+        "erasableSyntaxOnly": true,
+        "exactOptionalPropertyTypes": true,
+        "forceConsistentCasingInFileNames": true,
+        "module": "CommonJS",
+        "noEmitOnError": true,
+        "preserveConstEnums": true,
+        "strict": true,
+        "target": "ESNext",
+        "outDir": "./dist",
+    }
+}

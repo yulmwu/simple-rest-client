@@ -1,0 +1,31 @@
+{
+    "name": "simple-rest-client",
+    "version": "1.0.0",
+    "description": "",
+    "homepage": "https://github.com/yulmwu/simple-rest-client#readme",
+    "bugs": {
+        "url": "https://github.com/yulmwu/simple-rest-client/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/yulmwu/simple-rest-client.git"
+    },
+    "license": "MIT",
+    "author": "yulmwu",
+    "type": "commonjs",
+    "main": "./dist/index.js",
+    "scripts": {
+        "build": "tsc",
+        "start": "node dist/index.js",
+        "start:nodemon": "nodemon --watch src --exec ts-node src/index.ts",
+        "prestart": "npm run build"
+    },
+    "devDependencies": {
+        "@types/node": "^22.15.26",
+        "nodemon": "^3.1.10",
+        "typescript": "^5.8.3"
+    },
+    "dependencies": {
+        "axios": "^1.9.0"
+    }
+}
