@@ -1,14 +1,23 @@
+type Headers = Record<string, string>;
+
 interface ParsedHttpStructure {
-    method: string;
-    path: string;
-    lines: Array<string>;
+    method: string
+    path: string
+    lines: Array<string>
 }
 
 interface ParsedRequest {
-    method: string;
-    path: string;
-    headers: Record<string, string>;
-    body: string;
+    method: string
+    path: string
+    headers: Headers
+    body: string
 }
 
-export type { ParsedHttpStructure, ParsedRequest };
+interface ClientOutput<T> {
+    status: number
+    statusText: string
+    headers: Headers
+    data?: T
+}
+
+export type { Headers, ParsedHttpStructure, ParsedRequest, ClientOutput }
