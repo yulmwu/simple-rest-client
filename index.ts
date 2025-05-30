@@ -15,8 +15,17 @@ output
     .then((res) => {
         console.log('Response Status:', res.status)
         console.log('Response Status Text:', res.statusText)
-        console.log('Response Headers:', res.headers)
-        console.log('Response Data:', res.data)
+
+        if (Object.keys(res.headers).length > 0) {
+            console.log('Response Headers:')
+            for (const [key, value] of Object.entries(res.headers)) {
+                console.log(`\t${key}: ${value}`)
+            }
+        } else {
+            console.log('No response headers')
+        }
+
+        if (res.data) console.log('Response Data:', res.data)
     })
     .catch((error) => {
         console.error('Error:', error.message)

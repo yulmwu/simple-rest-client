@@ -46,9 +46,7 @@ class HttpRequestClient<T> {
                     errorMessage += `\nResponse Headers: ${JSON.stringify(error.response.headers, null, 4)}`
                     errorMessage += `\nResponse Body: ${error.response.data}`
                 }
-            } else {
-                errorMessage = `Unexpected Error: ${error}`
-            }
+            } else errorMessage = `Unexpected Error: ${error}`
 
             throw new Error(errorMessage)
         }
