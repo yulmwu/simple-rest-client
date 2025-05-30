@@ -5,9 +5,15 @@ import HttpRequestClient from './src/Client'
 import elapsedTime from './src/utils/ElapsedTime'
 import contentParser from './src/utils/ContentParser'
 import { ContentType } from './src/types'
+import templateReplacer from './src/utils/TemplateReplacer'
 
 const input = readFileSync('tests/sesori.test.http', 'utf-8')
-const parsed = new Parser(input).parse()
+
+const replaced = templateReplacer(input, {
+    'xxx': 'Hello, World!',
+})
+
+const parsed = new Parser(replaced).parse()
 
 const request = new HttpRequestClient(parsed)
 

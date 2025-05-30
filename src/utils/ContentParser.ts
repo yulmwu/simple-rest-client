@@ -1,6 +1,6 @@
 import { ContentParserOutput, ContentType } from '../types'
 
-export default (content: string, contentType: ContentType): ContentParserOutput => {
+const contentParser = (content: string, contentType: ContentType): ContentParserOutput => {
     switch (contentType) {
         case 'application/json':
             try {
@@ -22,3 +22,5 @@ export default (content: string, contentType: ContentType): ContentParserOutput 
             throw new Error(`Unsupported content type: ${contentType}`)
     }
 }
+
+export default contentParser
