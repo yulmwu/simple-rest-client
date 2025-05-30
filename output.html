@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <title>JSON to HTML Table with Icons</title>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"
+            integrity="sha512-b+nQTCdtTBIRIbraqNEwsjB6UvL3UEMkXnhzd8awtCYh0Kcsjl9uEgwVFVbhoj3uu1DO1ZMacNvLoyJJiNfcvg=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+        <style>
+            body {
+                font-family: monospace;
+                background-color: #f9f9f9;
+                color: #333;
+                padding: 2rem;
+                line-height: 1.6;
+            }
+
+            h2 {
+                margin-bottom: 1rem;
+                font-size: 2rem;
+            }
+
+            textarea {
+                width: 100%;
+                height: 180px;
+                font-size: 14px;
+                padding: 1rem;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                resize: vertical;
+                box-sizing: border-box;
+                background: #fff;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 2rem;
+                background: white;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+                font-size: 16px;
+            }
+
+            th,
+            td {
+                padding: 10px 12px;
+                text-align: left;
+                border-bottom: 1px solid #e0e0e0;
+            }
+
+            th {
+                background-color: #f3f4f6;
+            }
+
+            .key-cell {
+                white-space: pre-wrap;
+            }
+
+            .key-icon {
+                margin-right: 10px;
+                color: #3b82f6;
+                min-width: 16px;
+            }
+
+            .error {
+                color: #dc2626;
+                font-weight: bold;
+                margin-top: 1rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="output">
+            <h2>Body</h2>
+            <textarea readonly>
+{
+  "error": "유효하지 않은 토큰입니다."
+}</textarea
+            >
+            <table>
+                <tr>
+                    <th>Key</th>
+                    <th>Value</th>
+                </tr>
+
+                <tr>
+                    <td class="key-cell"><i class="fas fa-font key-icon"></i>error</td>
+                    <td>유효하지 않은 토큰입니다.</td>
+                </tr>
+            </table>
+
+            <h2>Headers</h2>
+            <textarea readonly>
+{
+  "Server": "nginx/1.26.3",
+  "Date": "Fri, 30 May 2025 12:01:08 GMT",
+  "Content-Type": "application/json; charset=utf-8",
+  "Content-Length": "48",
+  "Connection": "keep-alive",
+  "X-Powered-By": "Express",
+  "Access-Control-Allow-Origin": "*",
+  "Etag": "W/\"30-Q96zs9eQATZ1kHV7C2sannNI1xU\""
+}</textarea
+            >
+            <table>
+                <tr>
+                    <th>Key</th>
+                    <th>Value</th>
+                </tr>
+
+                <tr>
+                    <td class="key-cell"><i class="fas fa-font key-icon"></i>Server</td>
+                    <td>nginx/1.26.3</td>
+                </tr>
+
+                <tr>
+                    <td class="key-cell"><i class="fas fa-font key-icon"></i>Date</td>
+                    <td>Fri, 30 May 2025 12:01:08 GMT</td>
+                </tr>
+
+                <tr>
+                    <td class="key-cell"><i class="fas fa-font key-icon"></i>Content-Type</td>
+                    <td>application/json; charset=utf-8</td>
+                </tr>
+
+                <tr>
+                    <td class="key-cell"><i class="fas fa-font key-icon"></i>Content-Length</td>
+                    <td>48</td>
+                </tr>
+
+                <tr>
+                    <td class="key-cell"><i class="fas fa-font key-icon"></i>Connection</td>
+                    <td>keep-alive</td>
+                </tr>
+
+                <tr>
+                    <td class="key-cell"><i class="fas fa-font key-icon"></i>X-Powered-By</td>
+                    <td>Express</td>
+                </tr>
+
+                <tr>
+                    <td class="key-cell"><i class="fas fa-font key-icon"></i>Access-Control-Allow-Origin</td>
+                    <td>*</td>
+                </tr>
+
+                <tr>
+                    <td class="key-cell"><i class="fas fa-font key-icon"></i>Etag</td>
+                    <td>W/"30-Q96zs9eQATZ1kHV7C2sannNI1xU"</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs'
+import { readFileSync, writeFileSync } from 'node:fs'
 import Parser from './src/Parser'
 import HttpRequestClient from './src/Client'
 
@@ -6,11 +6,12 @@ import elapsedTime from './src/utils/ElapsedTime'
 import contentParser from './src/utils/ContentParser'
 import { ContentType } from './src/types'
 import templateReplacer from './src/utils/TemplateReplacer'
+import HTMLOutput from './src/utils/HTMLOutput'
 
-const input = readFileSync('tests/sesori.test.http', 'utf-8')
+const input = readFileSync('sesori.test.http', 'utf-8')
 
 const replaced = templateReplacer(input, {
-    'xxx': 'Hello, World!',
+    xxx: 'Hello, World!',
 })
 
 const parsed = new Parser(replaced).parse()
@@ -24,19 +25,27 @@ output
     .then((res) => {
         console.log(`=> HTTP/1.1 ${res.status} ${res.statusText}`)
 
-        if (Object.keys(res.headers).length > 0) {
-            console.log('Response Headers:')
-            console.table(res.headers)
-        } else {
-            console.log('No response headers')
-        }
+        const htmlOutputOptions: Record<string, object> = {}
 
         if (res.data) {
             const contentType = res.headers['Content-Type'] ?? 'text/plain'
             const contentTypeFirst = contentType.split(';')[0].trim()
-            console.log(`Response Body (${contentTypeFirst}):`)
-            console.table(contentParser(res.data, contentTypeFirst as ContentType))
+            const body = contentParser(res.data, contentTypeFirst as ContentType)
+            if (typeof body === 'object') {
+                // TODO
+                htmlOutputOptions['Body'] = body
+            }
+            // htmlOutputOptions['Body'] = body
         }
+
+        if (Object.keys(res.headers).length > 0) {
+            htmlOutputOptions['Headers'] = res.headers
+        }
+
+        console.log(htmlOutputOptions)
+
+        const html = new HTMLOutput(htmlOutputOptions)
+        writeFileSync('output.html', html.generate())
     })
     .catch((error) => {
         console.error('Error:', error.message)
