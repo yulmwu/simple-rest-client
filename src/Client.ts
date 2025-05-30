@@ -27,6 +27,7 @@ class HttpRequestClient {
         try {
             const res = await axios.request(config)
 
+            // 요청 응답이 객체인경우(예: application/json) 등 => 문자열로 변환
             if (typeof res.data === 'object' && res.data !== null) res.data = JSON.stringify(res.data, null, 4)
 
             const output: ClientOutput = {
